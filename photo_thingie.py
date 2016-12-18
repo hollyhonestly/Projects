@@ -1,8 +1,8 @@
+from argparse import ArgumentParser
 import random
 import json
 
 
-# read object from json
 def read_json(filename):
     with open(filename, "r") as f:  # open the file
         contents = f.read()  # read the contents
@@ -10,13 +10,25 @@ def read_json(filename):
         return objects
 
 
-# print selected random object
-def assemble_message():
-    lists = read_json("/Users/hollylemos/Projects/photo_them_sample.json")
+def assemble_message(lists):
     perspective = random.choice(lists['perspective'])
     object = random.choice(lists['object'])
     condition = random.choice(lists['condition'])
-    # print(condition, object, perspective)
-    print("Take a {0} photo of a {1} from a {2} perspective".format(condition, object, perspective))
+    return "Take a {0} photo of a {1} from a {2} perspective".format(condition, object, perspective)
 
-assemble_message()
+
+def parse_args():
+    parser = ArgumentParser(description='Provides inspiration for photography')
+    parser.add_argument('inspiration_file', type=str, help='path to json file')
+    return parser.parse_args()
+
+
+def main():
+    # ORIGINAL FILE = '/Users/hollylemos/Projects/photo_them_sample.json'
+    args = parse_args()
+    file_name = args.inspiration_file
+    loaded_json = read_json(file_name)
+    print(assemble_message(loaded_json))
+
+if __name__ == '__main__':
+    main()
