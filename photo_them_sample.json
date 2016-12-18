@@ -1,0 +1,24 @@
+{
+	"object": [
+		"tree",
+		"wall",
+		"lamp post",
+		"trash",
+		"animal",
+		"reflection"
+	],
+	"condition": [
+		"decaying",
+		"pristine",
+		"dirty",
+		"colorful"
+	],
+	"perspective": [
+		"close",
+		"low",
+		"high",
+		"wide",
+		"shallow",
+		"deep"
+	]
+}
